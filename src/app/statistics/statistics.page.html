@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Zeitspanne
+    </ion-title>
+    <ion-select value="day" okText="Ok" cancelText="Abbrechen" (ionChange)="timeSpanChanged($event)" slot="end"
+      [hidden]="contentHidden">
+      <ion-select-option value="day">Tag</ion-select-option>
+      <ion-select-option value="month">Monat</ion-select-option>
+      <ion-select-option value="year">Jahr</ion-select-option>
+      <!-- <ion-select-option value="whole">Gesamt</ion-select-option> -->
+    </ion-select>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="tertiary" [hidden]="contentHidden">
+
+  <div style="width: 100%; text-align: center; padding-top: 10px;">
+    <ion-text style="font-size: large;">Energieproduktion</ion-text>
+  </div>
+
+  <div style="height: 55%; width: 100%;">
+    <canvas id="historyBarChart"></canvas>
+  </div>
+
+  <div style="height: 3%; width: 100%;">
+    <!-- Empty spacer -->
+  </div>
+
+  <div style="text-align: center;">
+    <ion-text style="font-size: large;">CO<sub>2</sub> - Ersparnis (von xx kg/a)</ion-text>
+  </div>
+
+  <div style="padding-top:5px; padding-left: 0px; padding-right:0px;">
+    <svg id="svgBarCO2" viewBox="0 0 100 10"> </svg>
+
+    <table style="width:90%; margin-left: 5%;">
+      <tr>
+        <td>
+          <ion-text>{{co2Text}}</ion-text>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div style="height: 3%; width: 100%;">
+    <!-- Empty spacer -->
+  </div>
+
+  <div style="text-align: center;">
+    <ion-text style="font-size: large;">Energieverhältnis Solar / Zusatzheizung</ion-text>
+    <ion-text style="font-size: large;">(Solarer Deckungsgrad)</ion-text>
+  </div>
+
+  <div style="padding-top:5px; padding-left: 0px; padding-right:0px;">
+    <svg id="svgBar" viewBox="0 0 100 10"> </svg>
+
+    <table style="width:90%; margin-left: 5%;">
+      <tr>
+        <td>
+          <ion-text>Solar: {{solarPercentText}}</ion-text>
+        </td>
+        <td style="text-align: end;">
+          <ion-text>Zusatz: {{additionalPercentText}}</ion-text>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</ion-content>

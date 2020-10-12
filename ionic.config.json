@@ -1,0 +1,7 @@
+{
+  "name": "stromassistantFrontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

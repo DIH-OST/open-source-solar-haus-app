@@ -1,0 +1,8 @@
+{
+    "/power": {
+        "target": "http://192.168.8.111:8080/power",
+        "changeOrigin": true,
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

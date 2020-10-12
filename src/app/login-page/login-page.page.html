@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Anmeldung beim Regler</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary">
+
+  <ion-card color="primary">
+    <ion-card-header>
+      <ion-card-title>Zugangsdaten</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item color="secondary">
+        <ion-label position="floating">Benutzername / E-Mail</ion-label>
+        <ion-input type="text" [(ngModel)]="username" (ionChange)="checkIfLoginButtonEnabled()"></ion-input>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-item color="secondary">
+        <ion-label position="floating">Passwort</ion-label>
+        <ion-input type="password" [(ngModel)]="password" (ionChange)="checkIfLoginButtonEnabled()"></ion-input>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-button expand="block" color="success" (click)="doLogin()" [disabled]="!loginButtonEnabled">Anmelden
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="primary" style="position: absolute; bottom: 0; width: calc(100% - 20px);">
+    <ion-card-content>
+      <ion-button expand="block" color="danger" routerLink="/tabs/more" routerDirection="back">Abbrechen</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

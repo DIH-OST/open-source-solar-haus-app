@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Leistung</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content slot="fixed" color="tertiary" [hidden]="contentHidden"> 
+  
+  <div class="flex-container" style="height: var(--full-height-without-tabbar);">
+
+    <div class="infoContainer" style="margin-top:6%">
+
+      <div class="infoTitle">
+        <div class="text90deg">Aktuell</div>
+      </div>
+
+      <div class="infoSplitter" style="background-color: black;"> </div>
+      <div class="infoContent">
+        <div class="currentGridContainer">
+          <div class="currentGridCaption-1">Solar</div>
+          <div class="currentGridCaption-2">{{dateString}}<br>{{timeString}}</div>
+          <div class="currentGridCaption-3">Zusatz</div>
+
+          <div class="currentGridIcon-1">
+            <!-- Todo: Dynamical coloring -->
+            <object type="image/svg+xml" data="../../assets/icon/in-app/Solar.svg" id="iconSun"
+              style="max-height: calc(var(--full-height-without-tabbar) * 0.15);">
+            </object>
+          </div>
+          <div class="currentGridIcon-2">
+            <!-- Todo: Dynamical coloring -->
+            <object type="image/svg+xml" data="../../assets/icon/additional-heating/Flamme.svg" id="iconAdditional"
+              style="max-height: calc(var(--full-height-without-tabbar) * 0.15);">
+            </object>
+          </div>
+
+          <div class="currentGridValue-1">{{solarPowerString}}</div>
+          <div class="currentGridValue-2">{{additionalPowerString}}</div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Verhältnis Solar Zusatz -->
+    <div class="infoContainer">
+
+      <div class="infoTitle">
+        <div class="text90deg">Tagesverhältnis</div>
+      </div>
+
+      <div class="infoSplitter" style="background-color: black;"> </div>
+      <div class="infoContent">
+        <div class="consumptionGridContainer">
+
+          <div class="gridChart">
+            <div class="pieChartElement" style="width: calc(var(--full-height-without-tabbar) * 0.23);">
+              <canvas id="ratioPieChart"></canvas>
+            </div>
+          </div>
+
+          <div class="gridValue">{{ratioString}}</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Verbrauch -->
+    <div class="infoContainer">
+
+      <div class="infoTitle">
+        <div class="text90deg">Verbrauch</div>
+      </div>
+
+      <div class="infoSplitter" style="background-color: black;"> </div>
+      <div class="infoContent">
+        <div class="consumptionGridContainer">
+
+          <div class="gridChart">
+            <!-- Todo: Dynamical coloring -->
+            <img src="../../assets/icon/in-app/Haus.svg" alt="House"
+              style="max-height: calc(var(--full-height-without-tabbar) * 0.13); position: absolute; transform: translateY(40%);">
+
+            <div class="pieChartElement" style="width: calc(var(--full-height-without-tabbar) * 0.23);">
+              <canvas id="consumptionPieChart"></canvas>
+            </div>
+          </div>
+
+          <div class="gridValue">{{consumptionString}}</div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,252 @@
+.fullscreenContentContainer {
+    width: 100%;
+    height: 100%;
+}
+
+//-----------------------------------------------------------
+//Style of the header switch menu
+
+.headerGrid {
+    padding: 0px;
+}
+
+.headerTitle {
+    padding: 0px;
+    text-align: center;
+}
+
+.headerUnderlineRow {
+    height: 5px;
+}
+
+.headerUnderlineColInactive {
+    padding-top: 0px;
+}
+
+.headerUnderlineColActive {
+    @extend .headerUnderlineColInactive;
+    background-color: var(--ion-color-primary-contrast);
+}
+//-----------------------------------------------------------
+
+.gaugeGrid {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.gaugeGrid > div {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+// .flex-container > div {
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: column;
+// }
+
+.flex-container > .dateElement {
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc(var(--full-height-without-tabbar) * 0.1);
+    max-height: 50px;
+}
+
+.flex-container > .gaugeParentElement {
+    color: white;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc(var(--full-height-without-tabbar) * 0.4);
+}
+
+.flex-container > .chartElement {
+    color: white;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc(var(--full-height-without-tabbar) * 0.5);
+}
+
+.svgGauge {
+    max-height: calc(var(--full-height-without-tabbar) * 0.4);
+}
+
+.infoContainer {
+    display: grid;
+    grid-template-columns: 10% 3px 1fr;
+    grid-template-rows: 1fr;
+    gap: 1px 1px;
+    grid-template-areas: ". . .";
+    grid-gap: 0px;
+
+    width: 100%;
+    height: calc(var(--full-height-without-tabbar) * 0.3);
+    max-height: calc(var(--full-height-without-tabbar) * 0.3);
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.infoTitle {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--ion-color-secondary);
+    color: var(--ion-color-secondary-contrast);
+}
+
+.text90deg {
+    transform: rotate(-90deg);
+    vertical-align: middle;
+    text-align: center;
+}
+
+.infoContent {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+.currentGridContainer {
+    background-color: transparent;
+    color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.currentGridCaption-1 {
+    background: transparent;
+    display: grid;
+    justify-content: center;
+    align-items: end;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    font-weight: bold;
+}
+
+.currentGridCaption-2 {
+    background: transparent;
+    text-align: center;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.currentGridCaption-3 {
+    background: transparent;
+    display: grid;
+    justify-content: center;
+    align-items: end;
+    grid-column-start: 4;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    font-weight: bold;
+}
+
+.currentGridIcon-1 {
+    background: transparent;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 2;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.currentGridIcon-2 {
+    background: transparent;
+    text-align: center;
+    grid-column-start: 4;
+    grid-column-end: 7;
+    grid-row-start: 2;
+    grid-row-end: 2;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.currentGridValue-1 {
+    background: transparent;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    padding: 2px;
+}
+
+.currentGridValue-2 {
+    background: transparent;
+    text-align: center;
+    grid-column-start: 4;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    padding: 2px;
+}
+
+.consumptionGridContainer {
+    background-color: transparent;
+    color: black;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    grid-gap: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.gridChart {
+    background: transparent;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.gridValue {
+    background: transparent;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    padding: 2px;
+}

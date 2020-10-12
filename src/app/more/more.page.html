@@ -1,0 +1,222 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mehr</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="tertiary">
+
+  <!-- Login -->
+  <ion-card color="secondary" [hidden]="loggedIn">
+    <ion-card-header>
+      <ion-card-title>Willkommen, bitte anmelden!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button expand="block" color="success" routerLink="/login-page" routerDirection="forward">Anmelden
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Logout -->
+  <ion-card color="secondary" [hidden]="!loggedIn">
+    <ion-card-header>
+      <ion-card-title>Willkommen, {{displayName}}!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button expand="block" color="danger" (click)="doLogout()">Abmelden</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Auswahl C.M.I. -->
+  <ion-card color="secondary" [hidden]="!loggedIn">
+    <ion-card-header>
+      <ion-card-title>Auswahl C.M.I.</ion-card-title>
+      <ion-card-subtitle>Bitte wählen Sie das gewünschte C.M.I. aus</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-select okText="Ok" cancelText="Abbrechen" [(ngModel)]="selectedCMI" (ionChange)="selectedCMIChanged($event)">
+        <ion-select-option *ngFor="let c of CMIList">{{c}}</ion-select-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Datenpunkt Leistung Solar -->
+  <ion-card color="secondary" [hidden]="!loggedIn">
+    <ion-card-header>
+      <ion-card-title>Datenpunkt Leistung Solar</ion-card-title>
+      <ion-card-subtitle>Bitte wählen Sie den Datenpunkt aus</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-select okText="Ok" cancelText="Abbrechen" [(ngModel)]="selectedSolarPowerDatapoint"
+        (ionChange)="selectedSolarPowerDatapointChanged($event)">
+        <ion-select-option *ngFor="let item of dataSourcesArray">{{item}}</ion-select-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Datenpunkt Leistung Zusatzheizung -->
+  <ion-card color="secondary" [hidden]="!loggedIn">
+    <ion-card-header>
+      <ion-card-title>Datenpunkt Leistung Zusatzheizung</ion-card-title>
+      <ion-card-subtitle>Bitte wählen Sie den Datenpunkt aus</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-select okText="Ok" cancelText="Abbrechen" [(ngModel)]="selectedAdditionalPowerDatapoint"
+        (ionChange)="selectedAdditionalPowerDatapointChanged($event)">
+        <ion-select-option *ngFor="let item of dataSourcesArray">{{item}}</ion-select-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Daten Energieausweis -->
+  <ion-card color="secondary" [hidden]="!loggedIn">
+    <ion-card-header>
+      <ion-card-title>Daten Energieausweis</ion-card-title>
+      <ion-card-subtitle>Bitte geben Sie Ihre Kennzahlen ein</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Text field for PEB SK -->
+      <ion-item color="secondary">
+        <ion-label position="floating">
+          <table style="text-align: center;">
+            <tr>
+              <td style="padding-right: 10px;">PEB<sub>SK</sub></td>
+              <td>
+                <table style="font-size: small;">
+                  <tr>
+                    <td>kWh</td>
+                  </tr>
+                  <tr>
+                    <td style="border-top: 1px solid var(--ion-color-primary);">a</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="pebskCalced" (ionChange)="pebskChanged()"> </ion-input>
+      </ion-item>
+
+      <!-- Text field for CO2 SK -->
+      <ion-item color="secondary">
+        <ion-label position="floating">
+          <table style="text-align: center;">
+            <tr>
+              <td style="padding-right: 10px;">CO<sub>2 SK</sub></td>
+              <td>
+                <table style="font-size: small;">
+                  <tr>
+                    <td>kg</td>
+                  </tr>
+                  <tr>
+                    <td style="border-top: 1px solid var(--ion-color-primary);">a</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="co2skCalced" (ionChange)="co2skChanged()"> </ion-input>
+      </ion-item>
+
+      <!-- Text field for BGF -->
+      <ion-item color="secondary">
+        <ion-label position="floating">
+          <table style="text-align: center;">
+            <tr>
+              <td style="padding-right: 10px;">Bruttogrundfläche (BGF)</td>
+              <td>
+                <table style="font-size: small;">
+                  <tr>
+                    <td>m<sup>2</sup></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="bgfCalced" (ionChange)="bgfChanged()"> </ion-input>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Heizwärmebedarf pro Monat -->
+  <ion-card color="secondary" [hidden]="!loggedIn">
+    <ion-card-header>
+      <ion-card-title>Heizwärmebedarf (HWB<sub>SK</sub>)</ion-card-title>
+      <ion-card-subtitle>Bitte geben Sie die monatliche Werte in kWh ein</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">Jänner</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb01" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">Februar</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb02" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">März</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb03" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">April</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb04" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">Mai</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb05" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">Juni</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb06" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">Juli</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb07" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">August</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb08" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">September</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb09" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">Oktober</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb10" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">November</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb11" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label position="floating">Dezember</ion-label>
+        <ion-input type="number" [(ngModel)]="hwb12" (ionChange)="hwbChanged()"> </ion-input>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
